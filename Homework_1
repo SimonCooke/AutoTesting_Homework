@@ -1,0 +1,46 @@
+function Main()
+{
+  var txt_path = "e://1.txt";
+  var file_exists = aqFile.Exists(txt_path);
+  var text = "Simon says: Homework is Done"; 
+  var new_text = "No Homework - No Certificate";  
+  
+  if (file_exists == true)
+  
+  {
+  aqFile.WriteToTextFile(txt_path, text, 22, true);
+  }
+
+ else
+  
+  {
+  aqFile.Create(txt_path);
+  aqFile.WriteToTextFile(txt_path, text, 22);
+  } 
+  
+  if (aqFile.ReadWholeTextFile(txt_path, 22) == text)
+  
+  {
+  Log.Event("Text string is Correct! Text is: \"" + text + "\"");
+  }
+  
+  else 
+  
+  {
+  Log.Error("Text is Wrong!");
+  }
+
+  aqFile.WriteToTextFile(txt_path, new_text, 22, true);
+
+  if (aqFile.ReadWholeTextFile(txt_path, 22) == new_text)
+  
+  {
+  Log.Event("Text string Rewrited Correct! New Text is: \"" + new_text + "\"");
+  }
+  
+  else 
+  
+  {
+  Log.Error("Rewrited Text string is Wrong!");
+  }
+}
